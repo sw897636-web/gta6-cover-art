@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Coast Cover Studio — GTA-style cover art maker</title>
+<meta name="description" content="Turn your own photo and a caption into GTA-style multi-panel cover art, in Vice City sunset and neon grades. Offline, free, exported as PNG.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">NC</span>
+    <span class="brand-name">Neon Coast</span>
+    <span class="brand-sub">Cover Studio</span>
+  </div>
+  <p class="tagline">Your photo. Your caption. Poster-grade cover art in three steps.</p>
+</header>
+
+<main class="editor">
+  <section class="stage" aria-label="Cover preview">
+    <canvas id="preview" width="960" height="540"></canvas>
+    <p class="stage-hint">Click a panel in the preview to select it, then crop it below. The preview is the exact cover the PNG export writes.</p>
+  </section>
+
+  <aside class="controls" aria-label="Cover controls">
+    <section class="card">
+      <h2>1 · Photos</h2>
+      <p class="note">Photos stay on this machine — they are read in your browser and never uploaded.</p>
+      <div class="row">
+        <button id="uploadBtn" type="button" class="btn primary">Upload photos</button>
+        <input id="uploadInput" type="file" accept="image/*" multiple hidden>
+      </div>
+      <div id="photoList" class="photo-list" aria-label="Loaded photos"></div>
+      <p class="note">Two sample photos are built in, so the studio works out of the box. Click a thumbnail to put that photo in the selected panel.</p>
+      <button id="fillAllBtn" type="button" class="btn">Fill every panel with the selected photo</button>
+    </section>
+
+    <section class="card">
+      <h2>2 · Layout</h2>
+      <div id="layoutPicker" class="picker"></div>
+    </section>
+
+    <section class="card">
+      <h2>3 · Grade</h2>
+      <div id="gradePicker" class="picker"></div>
+    </section>
+
+    <section class="card">
+      <h2>4 · Caption</h2>
+      <label class="field">
+        <span>Title</span>
+        <input id="titleInput" type="text" maxlength="40" value="Sunset Heist" autocomplete="off">
+      </label>
+      <label class="field">
+        <span>Subtitle / tagline</span>
+        <input id="subtitleInput" type="text" maxlength="60" value="Vice City nights, our rules" autocomplete="off">
+      </label>
+    </section>
+
+    <section class="card">
+      <h2>Selected panel</h2>
+      <p id="panelLabel" class="panel-label">Panel 1 of 4</p>
+      <label class="field">
+        <span>Photo in this panel</span>
+        <select id="panelPhoto"></select>
+      </label>
+      <label class="field">
+        <span>Zoom <output id="zoomValue">1.00×</output></span>
+        <input id="zoomSlider" type="range" min="1" max="2.5" step="0.01" value="1">
+      </label>
+      <label class="field">
+        <span>Position left / right</span>
+        <input id="panXSlider" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+      </label>
+      <label class="field">
+        <span>Position up / down</span>
+        <input id="panYSlider" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+      </label>
+    </section>
+
+    <section class="card export-card">
+      <h2>5 · Export PNG</h2>
+      <div id="sizePicker" class="picker"></div>
+      <button id="exportBtn" type="button" class="btn primary big">Export PNG</button>
+      <p id="exportNote" class="note" role="status">Ready. Pick a size and export.</p>
+    </section>
+  </aside>
+</main>
+
+<footer class="foot">
+  <p>Neon Coast Cover Studio — an original design. No Rockstar Games logo, artwork, character or font is used. Display lettering: Anton and Bangers, both under the SIL Open Font License (see <code>fonts/OFL.txt</code>). Sample photos were made with an image model for make.fun and are free to use.</p>
+</footer>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
